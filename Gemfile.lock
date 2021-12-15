@@ -171,7 +171,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.2)
+    sqlite3 (>= 3.31.1)
     thor (1.1.0)
     tilt (2.0.10)
     turbolinks (5.2.1)
