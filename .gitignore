@@ -10,6 +10,7 @@ capybara-*.html
 *.orig
 rerun.txt
 pickle-email-*.html
+/.vscode
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -67,3 +68,9 @@ yarn-debug.log*
 /storage/*
 !/storage/.keep
 /public/uploads
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
