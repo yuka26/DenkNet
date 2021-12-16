@@ -1,3 +1,3 @@
 class SmallCategory < ApplicationRecord
-    belongs_to :large_category
+  belongs_to :large_category
 end
