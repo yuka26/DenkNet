@@ -8,10 +8,24 @@
   <p>ふりがな</p><input type="text" size="30" required="required"><br>
   
   <!-- チェックボックス -->
+  <input type="radio" name="sex" value="">男性
+  <input type="radio" name="sex" value="">女性
+  <input type="radio" name="sex" value="">その他<br>
+
   <!-- アイコン -->
+  <input type="file">
   <p>電話番号</p><input type="text" size="30" required="required"><br>
   
-  <!-- 生年月日 -->
+  <!-- 生年月日 対応ブラウザ Chrome (カレンダー)、Opera (カレンダー)、Microsoft Edge (ドラムロール)
+  非対応ブラウザ  Safari、IE、FireFox-->
+  <input type="date" name="calendar" max="9999-12-31"><br>
   <!-- カテゴリー -->
+  <select name="genre" size="1">
+    <option selected>あなたの継承したい伝統文化を選んでください。</option>
+    <option value="genre1">出雲弁</option>
+    <option value="genre2">安来節</option>
+    <option value="genre3">郷土料理</option>
+    <option value="genre4">石見神楽</option>
+</select><br>
   <input type="submit" value="確認画面へ">
 </form>
