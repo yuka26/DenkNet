@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  root to: 'top#index'
+  get 'sessions/new'
   get "/", to: "top#index"
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get "/signup", to: "top#signup"
+
+  resources :folklores, only: [:new, :create] do
+    collection do
+      post :new_category
+      post :new_icon
+      post :new_confirm
+    end
+  end
 end

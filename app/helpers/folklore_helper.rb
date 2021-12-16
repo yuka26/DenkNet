@@ -1,0 +1,2 @@
+module FolkloreHelper
+end
