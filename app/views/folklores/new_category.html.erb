@@ -1,0 +1,23 @@
+<div class="container">
+  <div>
+    <%= form_with(model: @folklore, url: {controller: 'folklores', action: 'new_icon'} ,local: true) do |f| %>
+      <select name="category">
+        <option>カテゴリー</option>
+        <%= @categories.each do |category| %>
+        <option value="<%= category.id %>"><%= category.name %></option>
+        <% end %>
+      </select>
+
+      <%= f.hidden_field :email %>
+      <%= f.hidden_field :password %>
+      <%= f.hidden_field :user_name %>
+      <%= f.hidden_field :furigana %>
+      <%= f.submit "次へ", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+  <div>
+    <p>電話番号</p>
+    <p>0000-00-0000</p>
+  </div>
+</div>
