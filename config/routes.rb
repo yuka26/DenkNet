@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
   get "/", to: "top#index"
 
   get "/folklore/new", to: "folklore#new"
@@ -6,4 +7,6 @@ Rails.application.routes.draw do
   get "/folklore/new_icon", to: "folklore#new_icon"
   get "/folklore/new_confirm", to: "folklore#new_confirm"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  resource :login
 end

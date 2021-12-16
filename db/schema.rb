@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_15_032408) do
+ActiveRecord::Schema.define(version: 2021_12_16_061410) do
 
   create_table "folklore_small_categories", force: :cascade do |t|
     t.integer "folklore_id"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2021_12_15_032408) do
     t.string "user_id"
     t.string "tel_number"
     t.string "email"
-    t.string "password"
+    t.string "password_digest"
     t.integer "gender"
     t.string "screen_name"
     t.string "user_name"
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 2021_12_15_032408) do
     t.string "user_id"
     t.string "tel_number"
     t.string "email"
-    t.string "password"
+    t.string "password_digest"
     t.integer "gender"
     t.string "screen_name"
     t.string "user_name"
@@ -75,6 +75,13 @@ ActiveRecord::Schema.define(version: 2021_12_15_032408) do
     t.date "birthday"
     t.boolean "identity"
     t.string "bio"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end

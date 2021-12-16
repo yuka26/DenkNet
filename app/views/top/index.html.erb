@@ -1,1 +1,8 @@
-<h1>Hello Rails</h1>
+<h1>トップページ</h1>
+<p>Hello Ruby!</p>
+
+<% if current_user == nil %>
+  <%= link_to "ログイン", login_path %>
+<% else %>
+  <%= link_to 'ログアウト', login_path, :confirm => 'ログアウトしますか？', :method => :delete %>
+<% end %>
