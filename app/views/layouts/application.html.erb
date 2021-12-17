@@ -1,16 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>DenkNet</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>TestRails</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <% if user_signed_in? %>
+    <header>
+      <div><%= link_to root_path do %><img src="" alt="logo" id="logo"><% end %></div>
+      <div><%= link_to "トップ", root_path, class: "text-white" %></div>
+      <div><%= link_to "マイページ", user_path(current_user.id), class: "text-white" %></div>
+      <div><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-white" %></div>
+      <% if !current_user.is_folklore %>
+        <div><%= link_to "GENRE", genre_user_path(current_user.id, "all"), method: :get, class: "text-white" %></div>
+        <div><%= link_to "MATCHING", index_user_matchings_path(current_user.id), method: :get, class: "text-white" %></div>
+      <% end %>
+    </header>
+    <% end %>
+
+    <div class="cover align-middle">
+      <div class="text-center">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

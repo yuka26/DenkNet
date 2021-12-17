@@ -1,0 +1,37 @@
+<div class="cover align-middle">
+  <div class="container">
+    <% if @user == current_user and !current_user.is_folklore and @folklores %>
+    <div class="row justify-content-center">
+      <h2>GENRE一覧</h2>
+
+      <div class="container">
+        <div class="row justify-content-center">
+          <p><%= link_to "全て", genre_user_path(current_user.id, "all") %></p>
+        <% @categories.each do |category| %>
+          <p><%= link_to "#{category.name}", genre_user_path(current_user.id, category.id) %></p>
+        <% end %>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <% @folklores.each do |folklore| %>
+            <% if !current_user.matching?(folklore.id, current_user.id) and !current_user.reject?(folklore.id, current_user.id) %>
+            <div class="col">
+              <%= link_to user_path(folklore.id) do %>
+                <div class="card" style="width: 18rem;">
+                  <%= attachment_image_tag folklore, :profile_image, size: '200x250', fallback: "no_image.png", class: "mx-3 card-img-top" %>
+                  <p><%= folklore.name %>さん</p>
+                  <p>カテゴリー: <%= folklore.category_name %></p>
+                  <p><%= folklore.profile %></p>
+                </div>
+              <% end %>
+            </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

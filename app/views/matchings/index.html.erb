@@ -1,0 +1,25 @@
+<div class="cover align-middle">
+  <div class="container">
+    <% if @user == current_user and !current_user.is_folklore and @matches %>
+    <div class="row justify-content-center">
+      <h2>MATCHING一覧</h2>
+      <div class="container">
+        <div class="row">
+          <% @matches.each do |match| %>
+            <div class="col">
+              <%= link_to user_path(match.id) do %>
+                <div class="card" style="width: 18rem;">
+                  <%= image_tag 'f.png', size: "200x200", class: "mx-3 card-img-top" %>
+                  <p><%= match.name %>さん</p>
+                  <p>カテゴリー: <%= match.category_name %></p>
+                  <p><%= match.profile %></p>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

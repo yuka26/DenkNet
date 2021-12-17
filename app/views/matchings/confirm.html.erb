@@ -1,0 +1,16 @@
+<div class="cover align-middle">
+  <div class="container">
+    <% if current_user.matching?(@user.id, @successor.id) %>
+      <p>おめでとうございます！マッチング成功です。1週間以内にサポートから電話を送ります。</p>
+
+      <p><%= link_to "マイページへ戻る", user_path(current_user.id) %></p>
+    <% else %>
+      <p><%= @successor.name %></p>
+
+      <p><%= attachment_image_tag @successor, :profile_image, size: '100x100', fallback: "no_image.png", class: "mb-3 profile-img" %></p>
+
+      <%= link_to "承諾する", approve_user_matchings_path(@user.id, @successor.id) %>
+      <%= link_to "承諾しない", reject_user_matchings_path(@user.id, @successor.id) %>
+    <% end %>
+  </div>
+</div>
