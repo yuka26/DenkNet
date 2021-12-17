@@ -1,65 +1,119 @@
 # This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
+# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
 # Examples:
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-folklore = Folklore.create(
-  user_id: '12345',
-  tel_number: '08540000000',
-  email: 'aaaaa@gmail.com',
-  password: 'aaasswwe',
-  gender: true,
-  screen_name: '1111111',
-  user_name: '田中権左衛門',
-  furigana: '01たなかごんざえもん',
-  icon: 'icon.jpg',
-  birthday: '2999-10-25',
-  identity: false,
-  bio: 'よろぴこ'
+u1 = User.create(
+  email: 'f1@test.com',
+  name: '高橋',
+  is_folklore: true,
+  profile: 'まじ人工たりねえ けど、引き継ぎてえ ならやっるきゃねえ DenkNet',
+  profile_image: File.open("./app/assets/images/f.png"),
+  password: 'password',
+  password_confirmation: 'password'
 )
 
-successor = Successor.create(
-    user_id: '6789',
-    tel_number: '09674583217',
-    email: 'mealis@gmail.com',
-    password: 'rthwjs',
-    gender: true,
-    screen_name: 'あいあい',
-    user_name: '門脇夢太郎',
-    furigana: 'かどわきゆめたろう',
-    icon: 'icon.jpg',
-    birthday: '5000-12-24',
-    identity: true,
-    bio: 'なんでもしりたい'
+u2 = User.create(
+  email: 's1@test.com',
+  name: '継承者',
+  is_folklore: false,
+  profile: '俺は継承者',
+  profile_image: File.open("./app/assets/images/s.png"),
+  password: 'password',
+  password_confirmation: 'password'
 )
 
-large_category = LargeCategory.create(
-    name: '安来節'
+u3 = User.create(
+  email: 'f2@test.com',
+  name: '広戸',
+  is_folklore: true,
+  profile: '選挙・心境・最強！ にしても現況 最高 忖度なくして選択して ワクワクらくらくしようぜ',
+  profile_image: File.open("./app/assets/images/f.png"),
+  password: 'password',
+  password_confirmation: 'password'
 )
 
-small_category = SmallCategory.create!(
-    large_category: large_category,
-    name: '歌'
+u4 = User.create(
+  email: 'f4@test.com',
+  name: '河上',
+  is_folklore: true,
+  profile: 'この伝統 絶えさせぬための継承 兎にも角にも よろしくたのもうす',
+  profile_image: File.open("./app/assets/images/f.png"),
+  password: 'password',
+  password_confirmation: 'password'
 )
 
-FolkloreSmallCategory.create(
-  folklore: folklore,
-  small_category: small_category
-)
+c1 = Category.create(name: '安来節')
+c2 = Category.create(name: '石見神楽')
+c3 = Category.create(name: '出雲弁')
+c4 = Category.create(name: '郷土料理')
 
-SuccessorSmallCategory.create(
-  successor: successor,
-  small_category: small_category
-)
+UserCategory.create(user: u1, category: c1)
+UserCategory.create(user: u3, category: c2)
+UserCategory.create(user: u4, category: c3)
 
-Matching.create(
-  folklore: folklore,
-  successor: successor,
-  message: '申請よろぴこ',
-  is_approve: false,
-  candidate_datetime: '2222-22-22 10:00,3333-33-33 11:00',
-  phone_call_datetime: nil
-)
+# 唯一の継承者データ
+UserCategory.create(user: u2, category: c1)
+
+# 安来節の伝承者を大量に作る
+20.times do |n|
+  user = User.create!(
+    email: "test#{n + 100}@test.com",
+    name: "伝承プロ#{n + 1}",
+    is_folklore: true,
+    profile: 'よろしくお願いします。プロです。',
+    profile_image: File.open("./app/assets/images/f.png"),
+    password: 'password',
+    password_confirmation: 'password'
+  )
+
+  UserCategory.create(user: user, category: c1)
+end
+
+# 石見神楽の伝承者を大量に作る
+20.times do |n|
+  user = User.create!(
+    email: "test#{n + 200}@test.com",
+    name: "伝承プロ#{n + 1}",
+    is_folklore: true,
+    profile: 'よろしくお願いします。プロです。',
+    profile_image: File.open("./app/assets/images/f.png"),
+    password: 'password',
+    password_confirmation: 'password'
+  )
+
+  UserCategory.create(user: user, category: c2)
+end
+
+# 出雲弁の伝承者を大量に作る
+20.times do |n|
+  user = User.create!(
+    email: "test#{n + 300}@test.com",
+    name: "伝承プロ#{n + 1}",
+    is_folklore: true,
+    profile: 'よろしくお願いします。プロです。',
+    profile_image: File.open("./app/assets/images/f.png"),
+    password: 'password',
+    password_confirmation: 'password'
+  )
+
+  UserCategory.create(user: user, category: c3)
+end
+
+# 郷土料理の伝承者を大量に作る
+20.times do |n|
+  user = User.create!(
+    email: "test#{n + 400}@test.com",
+    name: "伝承プロ#{n + 1}",
+    is_folklore: true,
+    profile: 'よろしくお願いします。プロです。',
+    profile_image: File.open("./app/assets/images/f.png"),
+    password: 'password',
+    password_confirmation: 'password'
+  )
+
+  UserCategory.create(user: user, category: c4)
+end

@@ -2,79 +2,56 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# This file is the source Rails uses to define your schema when running `bin/rails
-# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
-# be faster and is potentially less error prone than running all of your
-# migrations from scratch. Old migrations may fail to apply correctly if those
-# migrations use external dependencies or application code.
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_15_032408) do
+ActiveRecord::Schema.define(version: 2021_12_16_191530) do
 
-  create_table "folklore_small_categories", force: :cascade do |t|
-    t.integer "folklore_id"
-    t.integer "small_category_id"
-    t.index ["folklore_id"], name: "index_folklore_small_categories_on_folklore_id"
-    t.index ["small_category_id"], name: "index_folklore_small_categories_on_small_category_id"
-  end
-
-  create_table "folklores", force: :cascade do |t|
-    t.string "user_id"
-    t.string "tel_number"
-    t.string "email"
-    t.string "password"
-    t.integer "gender"
-    t.string "screen_name"
-    t.string "user_name"
-    t.string "furigana"
-    t.string "icon"
-    t.date "birthday"
-    t.boolean "identity"
-    t.string "bio"
-  end
-
-  create_table "large_categories", force: :cascade do |t|
+  create_table "categories", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "matchings", force: :cascade do |t|
     t.integer "folklore_id"
     t.integer "successor_id"
     t.string "message"
-    t.boolean "is_approve"
-    t.string "candidate_datetime"
-    t.datetime "phone_call_datetime"
+    t.boolean "approve"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["folklore_id"], name: "index_matchings_on_folklore_id"
     t.index ["successor_id"], name: "index_matchings_on_successor_id"
   end
 
-  create_table "small_categories", force: :cascade do |t|
-    t.integer "large_category_id"
+  create_table "user_categories", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_user_categories_on_category_id"
+    t.index ["user_id"], name: "index_user_categories_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.string "name"
-    t.index ["large_category_id"], name: "index_small_categories_on_large_category_id"
-  end
-
-  create_table "successor_small_categories", force: :cascade do |t|
-    t.integer "successor_id"
-    t.integer "small_category_id"
-    t.index ["small_category_id"], name: "index_successor_small_categories_on_small_category_id"
-    t.index ["successor_id"], name: "index_successor_small_categories_on_successor_id"
-  end
-
-  create_table "successors", force: :cascade do |t|
-    t.string "user_id"
-    t.string "tel_number"
-    t.string "email"
-    t.string "password"
-    t.integer "gender"
-    t.string "screen_name"
-    t.string "user_name"
-    t.string "furigana"
-    t.string "icon"
-    t.date "birthday"
-    t.boolean "identity"
-    t.string "bio"
+    t.boolean "is_folklore"
+    t.string "profile"
+    t.string "profile_image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end
