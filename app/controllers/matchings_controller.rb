@@ -37,6 +37,7 @@ class MatchingsController < ApplicationController
   def create
     current_user.request(params[:user_id], params[:matching])
     redirect_to request.referer
+    
   end
 
   def destroy
